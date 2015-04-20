@@ -14,6 +14,7 @@
     "mocha": "^2.2.1",
     "node-sass": "^2.1.1",
     "power-assert": "^0.10.2",
+    "uglifyify": "^3.0.1",
     "watchify": "^2.4.0"
   },
   "dependencies": {
@@ -23,22 +24,12 @@
     "test": "mocha --compilers js:espower-babel/guess",
     "watch": "npm run watch-js & npm run watch-css & npm run watch-test",
     "watch-test": "mocha -w --compilers js:espower-babel/guess",
-    "watch-js": "mkdir -p .tmp/scripts && watchify src/client.js -o .tmp/scripts/client.bundle.js -v",
+    "watch-js": "mkdir -p .tmp/scripts && watchify -t babelify src/client.js -o .tmp/scripts/client.bundle.js -v",
     "watch-css": "mkdir -p .tmp/styles && node-sass app/styles/ -o .tmp/styles/ --output-style nested -w --source-map-embed",
     "serve": "browser-sync start --config bs-config.js",
     "start": "npm run watch & npm run serve",
     "build": "npm run build-js && npm run build-css",
-    "build-js": "mkdir -p build/scripts && browserify src/client.js -o build/scripts/client.bundle.js",
-    "build-css": "mkdir -p build/styles && node-sass app/styles/ -o build/styles/ --output-style compressed"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "experimental": true
-        }
-      ]
-    ]
+    "build-js": "NODE_ENV=production mkdir -p build/scripts && browserify -t babelify -t uglifyify src/client.js -o build/scripts/client.bundle.js",
+    "build-css": "mkdir -p build/styles && node-sass app/styles/ -o build/styles/ --output-style compressed -w"
   }
 }
