@@ -1,24 +1,24 @@
 {
   "name": "hiden-no-tare.web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": {
     "type": "MIT",
     "url": "http://pirosikick.mit-license.org/"
   },
   "devDependencies": {
-    "babel": "^4.7.7",
-    "babelify": "^5.0.4",
-    "browser-sync": "^2.2.5",
-    "browserify": "^9.0.3",
-    "espower-babel": "^2.0.0",
-    "mocha": "^2.2.1",
-    "node-sass": "^2.1.1",
-    "power-assert": "^0.10.2",
+    "babel": "^5.8.23",
+    "babelify": "^6.0.3",
+    "browser-sync": "^2.9.11",
+    "browserify": "^11.0.2",
+    "espower-babel": "^3.3.0",
+    "mocha": "^2.2.3",
+    "node-sass": "^3.3.3",
+    "power-assert": "^1.1.0",
     "uglifyify": "^3.0.1",
-    "watchify": "^2.4.0"
+    "watchify": "^3.4.0"
   },
   "dependencies": {
-    "lodash": "^3.5.0"
+    "lodash": "^3.10.1"
   },
   "scripts": {
     "test": "mocha --compilers js:espower-babel/guess",
