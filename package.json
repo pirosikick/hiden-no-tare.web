@@ -1,35 +1,36 @@
 {
   "name": "hiden-no-tare.web",
-  "version": "0.0.2",
-  "license": {
-    "type": "MIT",
-    "url": "http://pirosikick.mit-license.org/"
+  "version": "0.0.1",
+  "description": "@pirosikick's secret sauce for creating web application",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   },
+  "dependencies": {},
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babelify": "^6.0.3",
-    "browser-sync": "^2.9.11",
-    "browserify": "^11.0.2",
-    "espower-babel": "^3.3.0",
-    "mocha": "^2.2.3",
-    "node-sass": "^3.3.3",
-    "power-assert": "^1.1.0",
-    "uglifyify": "^3.0.1",
-    "watchify": "^3.4.0"
-  },
-  "dependencies": {
-    "lodash": "^3.10.1"
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-transform-runtime": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "browser-sync": "^2.10.1",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-util": "^3.0.7",
+    "vinyl-named": "^1.1.0",
+    "webpack-stream": "^3.1.0"
   },
   "scripts": {
-    "test": "mocha --compilers js:espower-babel/guess",
-    "watch": "npm run watch-js & npm run watch-css & npm run watch-test",
-    "watch-test": "mocha -w --compilers js:espower-babel/guess",
-    "watch-js": "mkdir -p .tmp/scripts && watchify -t babelify src/client.js -o .tmp/scripts/client.bundle.js -v",
-    "watch-css": "mkdir -p .tmp/styles && node-sass app/styles/ -o .tmp/styles/ --output-style nested -w --source-map-embed",
-    "serve": "browser-sync start --config bs-config.js",
-    "start": "npm run watch & npm run serve",
-    "build": "npm run build-js && npm run build-css",
-    "build-js": "NODE_ENV=production mkdir -p build/scripts && browserify -t babelify -t uglifyify src/client.js -o build/scripts/client.bundle.js",
-    "build-css": "mkdir -p build/styles && node-sass app/styles/ -o build/styles/ --output-style compressed -w"
-  }
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pirosikick/hiden-no-tare.web.git"
+  },
+  "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pirosikick/hiden-no-tare.web/issues"
+  },
+  "homepage": "https://github.com/pirosikick/hiden-no-tare.web#readme",
+  "private": true
 }
