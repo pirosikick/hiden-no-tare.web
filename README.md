@@ -1,14 +1,16 @@
 # hiden-no-tare.web
 
-hiden-no-tare.web is a project template of client-side web application development for me([@pirosikick](https://github.com/pirosikick/)).
+([@pirosikick](https://github.com/pirosikick/))'s secret sauce for creating web application.
 
 ## Feature
 
-- use browserify
-- write JavaScript for application and test with ES6
-    - babelify for app codes
-    - espower-babel for test codes
-- write css with node-sass
+- gulp
+- webpack
+  - babel-loader
+- postcss
+  - precss
+  - autoprefixer
+- browser-sync
 
 ## Usage
 
