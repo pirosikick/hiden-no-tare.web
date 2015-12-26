@@ -29,33 +29,6 @@ $ git init
 $ npm install
 ```
 
-### Npm scripts
-
-All tasks are defined in package.json as npm scripts.
-
-#### npm run start
-
-- This task:
-  - builds `.tmp/scripts/client.bundle.js` from `src/client.js` with browserify
-  - compiles scss files(`app/styles/**/*.scss`) to css files(`.tmp/styles/**/*.css`)
-  - launches web server on `localhost:3000` with browser-sync
-
-#### npm test
-
-- This task runs tests in `test/**/*.js`
-  - mocha + power-assert
-
-#### npm run watch
-
-- This task:
-  - watches and rebuilds JavaScript and CSS files.
-  - reloads browser-sync when changing JavaScript files, Stylesheets and html files in `app` or `.tmp`.
-
-#### npm run build
-
-- (TODO)
-- This task builds minified JavaScript and CSS files to `dist/` for production.
-
 ## License
 
 [MIT](http://pirosikick.mit-license.org/)
