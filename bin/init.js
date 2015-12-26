@@ -29,8 +29,9 @@ directries
   .map(path => fs.mkdirSync(path));
 
 const files = [
-  'package.json',
   'README.md',
+  'package.json',
+  'gulpfile.js',
   'webpack.config.js',
   'src/client.js',
   'src/styles/main.css',
@@ -40,7 +41,9 @@ const files = [
   'test/index.js'
 ];
 
-files.map(file => {
-  fs.createReadStream(path.join(basedir, file))
-    .pipe(fs.createWriteStream(path.join(process.cwd(), file)));
-});
+files
+  .filter(path => !exists(path))
+  .map(file => {
+    fs.createReadStream(path.join(basedir, file))
+      .pipe(fs.createWriteStream(path.join(process.cwd(), file)));
+  });
