@@ -3,6 +3,9 @@
   "description": "@pirosikick's secret sauce for creating web application",
   "version": "0.0.1",
   "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
+  "bin": {
+    "hiden-no-tare.web": "init.js"
+  },
   "bugs": {
     "url": "https://github.com/pirosikick/hiden-no-tare.web/issues"
   },
