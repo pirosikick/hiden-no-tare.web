@@ -1,10 +1,6 @@
-'use strict';
+import test from 'ava';
 
-import assert from 'assert';
-
-describe('Test', () => {
-  it('should be', () => {
-    assert(1 === 1);
-  });
+test('Test', t => {
+  t.is(1, 1);
 });
 

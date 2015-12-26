@@ -9,12 +9,16 @@ const webpackConfig = require('./webpack.config');
 
 const src = {
   webpack: ['src/client.js'],
-  css: ['src/styles/**/*.{css,scss}']
+  css: ['src/styles/**/*.css']
 };
 const tmp = {
   js: '.tmp/scripts',
   css: '.tmp/styles'
-}
+};
+const dist = {
+  js: 'dist/scripts',
+  css: 'dist/styles'
+};
 
 gulp.task('default', ['start']);
 gulp.task('start', done => {
@@ -36,7 +40,7 @@ gulp.task('start-server', done => {
   });
 });
 
-gulp.task('webpack', [], () => {
+gulp.task('webpack', () => {
   return gulp.src(src.webpack)
     .pipe(named())
     .pipe($.webpack(webpackConfig))
@@ -44,6 +48,14 @@ gulp.task('webpack', [], () => {
 });
 
 gulp.task('webpack:watch', ['clean'], () => {
+  const config = Object.assign(webpackConfig, { watch: true });
+  return gulp.src(src.webpack)
+    .pipe(named())
+    .pipe($.webpack(config))
+    .pipe(gulp.dest(tmp.js));
+});
+
+gulp.task('webpack:min', ['clean'], () => {
   const config = Object.assign(webpackConfig, { watch: true });
   return gulp.src(src.webpack)
     .pipe(named())
@@ -60,8 +72,18 @@ gulp.task('postcss', () => {
     .pipe($.sourcemaps.init())
     .pipe($.postcss(plugins))
     .pipe($.sourcemaps.write())
-    .pipe($.rename({ extname: '.css' }))
     .pipe(gulp.dest(tmp.css));
+});
+
+gulp.task('postcss:min', () => {
+  const plugins = [
+    require('autoprefixer'),
+    require('precss'),
+    require('cssnano')
+  ];
+  return gulp.src(src.css)
+    .pipe($.postcss(plugins))
+    .pipe(gulp.dest(dist.css));
 });
 
 gulp.task('postcss:watch', ['postcss'], () => {
@@ -69,5 +91,5 @@ gulp.task('postcss:watch', ['postcss'], () => {
 });
 
 gulp.task('clean', done => {
-  return gulp.src('.tmp').pipe($.clean());
+  return gulp.src(['.tmp', 'dist']).pipe($.clean());
 });
