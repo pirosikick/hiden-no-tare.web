@@ -14,7 +14,8 @@ const src = {
 };
 const tmp = {
   js: '.tmp/scripts',
-  css: '.tmp/styles'
+  css: '.tmp/styles',
+  lib: '.tmp/lib'
 };
 const dist = {
   js: 'dist/scripts',
@@ -94,6 +95,11 @@ gulp.task('postcss:min', () => {
     .pipe($.postcss(plugins))
     .pipe(gulp.dest(dist.css));
 });
+
+const libs = [
+  'node_modules/es6-promise/dist/es6-promise.min.js'
+];
+gulp.task('copy', () => gulp.src(libs).pipe(gulp.dest(tmp.lib)));
 
 gulp.task('clean', done => {
   return gulp.src(['.tmp', 'dist']).pipe($.clean());
