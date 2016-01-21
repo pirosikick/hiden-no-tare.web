@@ -106,7 +106,7 @@ const libs = [
 gulp.task('copy:tmp', () => gulp.src(libs).pipe(gulp.dest(tmp.lib)));
 gulp.task('copy:dist', () => mergeStream(
   gulp.src(libs).pipe(gulp.dest(dist.lib)),
-  gulp.src('public/**/*').pipe(gulp.dest('lib'))
+  gulp.src('public/**/*').pipe(gulp.dest('dist'))
 ));
 
 gulp.task('clean', () => del(['.tmp', 'dist']));
