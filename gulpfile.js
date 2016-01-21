@@ -8,6 +8,7 @@ const browserSync = require('browser-sync').create();
 $.webpack = require('webpack-stream');
 const webpackConfig = require('./webpack.config');
 const UglifyJsPlugin = require('webpack').optimize.UglifyJsPlugin;
+const mergeStream = require('merge-stream');
 
 const src = {
   webpack: ['src/client.js'],
@@ -20,16 +21,17 @@ const tmp = {
 };
 const dist = {
   js: 'dist/scripts',
-  css: 'dist/styles'
+  css: 'dist/styles',
+  lib: 'dist/lib'
 };
 
 gulp.task('default', ['start']);
 gulp.task('start', done => {
-  run('clean', ['start-server', 'watch'], done);
+  run('clean', ['copy:tmp', 'start-server', 'watch'], done);
 });
 gulp.task('watch', ['webpack:watch', 'postcss:watch']);
 gulp.task('build', done => {
-  run('clean', ['webpack:min', 'postcss:min'], done);
+  run('clean', ['copy:dist', 'webpack:min', 'postcss:min'], done);
 });
 
 gulp.task('start-server', done => {
@@ -54,7 +56,8 @@ gulp.task('webpack', () => {
 
 gulp.task('webpack:watch', () => {
   const config = Object.assign(webpackConfig, { watch: true });
-  return gulp.src(src.webpack)
+  gulp.src(src.webpack)
+    .pipe($.plumber())
     .pipe(named())
     .pipe($.webpack(config))
     .pipe(gulp.dest(tmp.js));
@@ -100,6 +103,10 @@ gulp.task('postcss:min', () => {
 const libs = [
   'node_modules/es6-promise/dist/es6-promise.min.js'
 ];
-gulp.task('copy', () => gulp.src(libs).pipe(gulp.dest(tmp.lib)));
+gulp.task('copy:tmp', () => gulp.src(libs).pipe(gulp.dest(tmp.lib)));
+gulp.task('copy:dist', () => mergeStream(
+  gulp.src(libs).pipe(gulp.dest(dist.lib)),
+  gulp.src('public/**/*').pipe(gulp.dest('lib'))
+));
 
 gulp.task('clean', () => del(['.tmp', 'dist']));
