@@ -9,11 +9,7 @@ module.exports = {
         loader: 'babel',
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        include: path.join(__dirname, 'src'),
-        query: {
-          plugins: ['transform-runtime'],
-          presets: ['es2015']
-        }
+        include: path.join(__dirname, 'src')
       }
     ]
   },
