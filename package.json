@@ -29,7 +29,7 @@
     "gulp-postcss": "^6.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "merge-stream": "^1.0.0",
+    "merge-stream": "^1.0.1",
     "precss": "^1.4.0",
     "run-sequence": "^1.1.5",
     "vinyl-named": "^1.1.0",
